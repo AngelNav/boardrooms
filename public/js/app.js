@@ -2189,23 +2189,21 @@ __webpack_require__.r(__webpack_exports__);
 
 "use strict";
 __webpack_require__.r(__webpack_exports__);
-Object(function webpackMissingModule() { var e = new Error("Cannot find module 'ziggy'"); e.code = 'MODULE_NOT_FOUND'; throw e; }());
-Object(function webpackMissingModule() { var e = new Error("Cannot find module './ziggy'"); e.code = 'MODULE_NOT_FOUND'; throw e; }());
-/* harmony import */ var _components__WEBPACK_IMPORTED_MODULE_1__ = __webpack_require__(/*! ./components */ "./resources/js/components.js");
-/* harmony import */ var vue_tables_2__WEBPACK_IMPORTED_MODULE_2__ = __webpack_require__(/*! vue-tables-2 */ "./node_modules/vue-tables-2/compiled/index.js");
-/* harmony import */ var vue_tables_2__WEBPACK_IMPORTED_MODULE_2___default = /*#__PURE__*/__webpack_require__.n(vue_tables_2__WEBPACK_IMPORTED_MODULE_2__);
+/* harmony import */ var _components__WEBPACK_IMPORTED_MODULE_0__ = __webpack_require__(/*! ./components */ "./resources/js/components.js");
+/* harmony import */ var vue_tables_2__WEBPACK_IMPORTED_MODULE_1__ = __webpack_require__(/*! vue-tables-2 */ "./node_modules/vue-tables-2/compiled/index.js");
+/* harmony import */ var vue_tables_2__WEBPACK_IMPORTED_MODULE_1___default = /*#__PURE__*/__webpack_require__.n(vue_tables_2__WEBPACK_IMPORTED_MODULE_1__);
 __webpack_require__(/*! ./bootstrap */ "./resources/js/bootstrap.js");
 
 window.Vue = __webpack_require__(/*! vue */ "./node_modules/vue/dist/vue.esm.js")["default"];
+/*import { ZiggyVue } from 'ziggy';
+import { Ziggy } from './ziggy';*/
 
 
 
-
-Vue.use(Object(function webpackMissingModule() { var e = new Error("Cannot find module 'ziggy'"); e.code = 'MODULE_NOT_FOUND'; throw e; }()), Object(function webpackMissingModule() { var e = new Error("Cannot find module './ziggy'"); e.code = 'MODULE_NOT_FOUND'; throw e; }()));
-Vue.use(vue_tables_2__WEBPACK_IMPORTED_MODULE_2__.ServerTable);
+Vue.use(vue_tables_2__WEBPACK_IMPORTED_MODULE_1__.ServerTable);
 var app = new Vue({
   el: '#app',
-  components: _components__WEBPACK_IMPORTED_MODULE_1__["default"]
+  components: _components__WEBPACK_IMPORTED_MODULE_0__["default"]
 });
 
 /***/ }),

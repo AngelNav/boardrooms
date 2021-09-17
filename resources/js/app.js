@@ -1,12 +1,11 @@
 require('./bootstrap');
 
 window.Vue = require('vue').default;
-import { ZiggyVue } from 'ziggy';
-import { Ziggy } from './ziggy';
+/*import { ZiggyVue } from 'ziggy';
+import { Ziggy } from './ziggy';*/
 import components from "./components";
 import {ServerTable} from "vue-tables-2"
 
-Vue.use(ZiggyVue, Ziggy);
 Vue.use(ServerTable)
 
 const app = new Vue({
