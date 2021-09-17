@@ -1,5 +1,5 @@
 @extends('layouts.app')
 
 @section('content')
-    <example-component/>
+    <boardrooms-table/>
 @endsection

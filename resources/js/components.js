@@ -1,5 +1,5 @@
-import ExampleComponent from "./components/ExampleComponent";
+import BoardroomsTable from "./components/BoardroomsTable";
 
 export default {
-    ExampleComponent
+    BoardroomsTable
 }

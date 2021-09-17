@@ -1,10 +1,13 @@
 require('./bootstrap');
 
 window.Vue = require('vue').default;
-
+import { ZiggyVue } from 'ziggy';
+import { Ziggy } from './ziggy';
 import components from "./components";
-// const files = require.context('./', true, /\.vue$/i)
-// files.keys().map(key => Vue.component(key.split('/').pop().split('.')[0], files(key).default))
+import {ServerTable} from "vue-tables-2"
+
+Vue.use(ZiggyVue, Ziggy);
+Vue.use(ServerTable)
 
 const app = new Vue({
     el: '#app',
