@@ -2176,6 +2176,9 @@ __webpack_require__.r(__webpack_exports__);
       options: {// see the options API
       }
     };
+  },
+  created: function created() {
+    console.info(this.route('boardrooms.index'));
   }
 });
 
@@ -2194,13 +2197,17 @@ __webpack_require__.r(__webpack_exports__);
 /* harmony import */ var vue_tables_2__WEBPACK_IMPORTED_MODULE_1___default = /*#__PURE__*/__webpack_require__.n(vue_tables_2__WEBPACK_IMPORTED_MODULE_1__);
 __webpack_require__(/*! ./bootstrap */ "./resources/js/bootstrap.js");
 
-window.Vue = __webpack_require__(/*! vue */ "./node_modules/vue/dist/vue.esm.js")["default"];
-/*import { ZiggyVue } from 'ziggy';
-import { Ziggy } from './ziggy';*/
+window.Vue = __webpack_require__(/*! vue */ "./node_modules/vue/dist/vue.esm.js")["default"]; // import { ZiggyVue } from 'ziggy';
+// import { Ziggy } from './ziggy';
 
 
 
 Vue.use(vue_tables_2__WEBPACK_IMPORTED_MODULE_1__.ServerTable);
+Vue.mixin({
+  methods: {
+    route: route
+  }
+});
 var app = new Vue({
   el: '#app',
   components: _components__WEBPACK_IMPORTED_MODULE_0__["default"]

@@ -23,6 +23,9 @@ export default {
                 // see the options API
             }
         }
+    },
+    created() {
+        console.info(this.route('boardrooms.index'))
     }
 }
 </script>
