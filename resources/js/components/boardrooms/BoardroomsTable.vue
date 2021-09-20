@@ -6,7 +6,7 @@
                     <div class="card-header">Salas de juntas</div>
 
                     <div class="card-body">
-                        <v-server-table url="/people" :columns="columns" :options="options"/>
+                        <v-server-table :url="route('boardrooms.index')" :columns="columns" :options="options"/>
                     </div>
                 </div>
             </div>
@@ -18,14 +18,17 @@
 export default {
     data() {
         return {
-            columns: ['id', 'name', 'age'],
+            columns: ['id', 'name'],
             options: {
-                // see the options API
+                headings: {
+                    id: 'id',
+                    name: 'Nombre'
+                },
+                sortable: ['id', 'name'],
             }
         }
     },
-    created() {
-        console.info(this.route('boardrooms.index'))
-    }
+    methods: {
+    },
 }
 </script>

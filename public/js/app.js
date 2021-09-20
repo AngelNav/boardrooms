@@ -2142,10 +2142,10 @@ function mergeFn (a, b) {
 
 /***/ }),
 
-/***/ "./node_modules/babel-loader/lib/index.js??clonedRuleSet-5[0].rules[0].use[0]!./node_modules/vue-loader/lib/index.js??vue-loader-options!./resources/js/components/BoardroomsTable.vue?vue&type=script&lang=js&":
-/*!**********************************************************************************************************************************************************************************************************************!*\
-  !*** ./node_modules/babel-loader/lib/index.js??clonedRuleSet-5[0].rules[0].use[0]!./node_modules/vue-loader/lib/index.js??vue-loader-options!./resources/js/components/BoardroomsTable.vue?vue&type=script&lang=js& ***!
-  \**********************************************************************************************************************************************************************************************************************/
+/***/ "./node_modules/babel-loader/lib/index.js??clonedRuleSet-5[0].rules[0].use[0]!./node_modules/vue-loader/lib/index.js??vue-loader-options!./resources/js/components/boardrooms/BoardroomsTable.vue?vue&type=script&lang=js&":
+/*!*********************************************************************************************************************************************************************************************************************************!*\
+  !*** ./node_modules/babel-loader/lib/index.js??clonedRuleSet-5[0].rules[0].use[0]!./node_modules/vue-loader/lib/index.js??vue-loader-options!./resources/js/components/boardrooms/BoardroomsTable.vue?vue&type=script&lang=js& ***!
+  \*********************************************************************************************************************************************************************************************************************************/
 /***/ ((__unused_webpack_module, __webpack_exports__, __webpack_require__) => {
 
 "use strict";
@@ -2172,14 +2172,17 @@ __webpack_require__.r(__webpack_exports__);
 /* harmony default export */ const __WEBPACK_DEFAULT_EXPORT__ = ({
   data: function data() {
     return {
-      columns: ['id', 'name', 'age'],
-      options: {// see the options API
+      columns: ['id', 'name'],
+      options: {
+        headings: {
+          id: 'id',
+          name: 'Nombre'
+        },
+        sortable: ['id', 'name']
       }
     };
   },
-  created: function created() {
-    console.info(this.route('boardrooms.index'));
-  }
+  methods: {}
 });
 
 /***/ }),
@@ -2193,16 +2196,16 @@ __webpack_require__.r(__webpack_exports__);
 "use strict";
 __webpack_require__.r(__webpack_exports__);
 /* harmony import */ var _components__WEBPACK_IMPORTED_MODULE_0__ = __webpack_require__(/*! ./components */ "./resources/js/components.js");
-/* harmony import */ var vue_tables_2__WEBPACK_IMPORTED_MODULE_1__ = __webpack_require__(/*! vue-tables-2 */ "./node_modules/vue-tables-2/compiled/index.js");
-/* harmony import */ var vue_tables_2__WEBPACK_IMPORTED_MODULE_1___default = /*#__PURE__*/__webpack_require__.n(vue_tables_2__WEBPACK_IMPORTED_MODULE_1__);
+/* harmony import */ var _tables_config__WEBPACK_IMPORTED_MODULE_1__ = __webpack_require__(/*! ./tables_config */ "./resources/js/tables_config.js");
+/* harmony import */ var vue_tables_2__WEBPACK_IMPORTED_MODULE_2__ = __webpack_require__(/*! vue-tables-2 */ "./node_modules/vue-tables-2/compiled/index.js");
+/* harmony import */ var vue_tables_2__WEBPACK_IMPORTED_MODULE_2___default = /*#__PURE__*/__webpack_require__.n(vue_tables_2__WEBPACK_IMPORTED_MODULE_2__);
 __webpack_require__(/*! ./bootstrap */ "./resources/js/bootstrap.js");
 
-window.Vue = __webpack_require__(/*! vue */ "./node_modules/vue/dist/vue.esm.js")["default"]; // import { ZiggyVue } from 'ziggy';
-// import { Ziggy } from './ziggy';
+window.Vue = __webpack_require__(/*! vue */ "./node_modules/vue/dist/vue.esm.js")["default"];
 
 
 
-Vue.use(vue_tables_2__WEBPACK_IMPORTED_MODULE_1__.ServerTable);
+Vue.use(vue_tables_2__WEBPACK_IMPORTED_MODULE_2__.ServerTable, _tables_config__WEBPACK_IMPORTED_MODULE_1__["default"].options, false, 'bootstrap4');
 Vue.mixin({
   methods: {
     route: route
@@ -2270,10 +2273,43 @@ __webpack_require__.r(__webpack_exports__);
 /* harmony export */ __webpack_require__.d(__webpack_exports__, {
 /* harmony export */   "default": () => (__WEBPACK_DEFAULT_EXPORT__)
 /* harmony export */ });
-/* harmony import */ var _components_BoardroomsTable__WEBPACK_IMPORTED_MODULE_0__ = __webpack_require__(/*! ./components/BoardroomsTable */ "./resources/js/components/BoardroomsTable.vue");
+/* harmony import */ var _components_boardrooms_BoardroomsTable__WEBPACK_IMPORTED_MODULE_0__ = __webpack_require__(/*! ./components/boardrooms/BoardroomsTable */ "./resources/js/components/boardrooms/BoardroomsTable.vue");
 
 /* harmony default export */ const __WEBPACK_DEFAULT_EXPORT__ = ({
-  BoardroomsTable: _components_BoardroomsTable__WEBPACK_IMPORTED_MODULE_0__["default"]
+  BoardroomsTable: _components_boardrooms_BoardroomsTable__WEBPACK_IMPORTED_MODULE_0__["default"]
+});
+
+/***/ }),
+
+/***/ "./resources/js/tables_config.js":
+/*!***************************************!*\
+  !*** ./resources/js/tables_config.js ***!
+  \***************************************/
+/***/ ((__unused_webpack_module, __webpack_exports__, __webpack_require__) => {
+
+"use strict";
+__webpack_require__.r(__webpack_exports__);
+/* harmony export */ __webpack_require__.d(__webpack_exports__, {
+/* harmony export */   "default": () => (__WEBPACK_DEFAULT_EXPORT__)
+/* harmony export */ });
+/* harmony default export */ const __WEBPACK_DEFAULT_EXPORT__ = ({
+  options: {
+    texts: {
+      count: "Mostrando {from} a {to} de {count} registros|{count} registros|Un registro",
+      first: "First",
+      last: "Last",
+      filter: "Filter:",
+      filterPlaceholder: "Search query",
+      limit: "Mostrar:",
+      page: "Página:",
+      noResults: "No hay registros",
+      filterBy: "Filtrado por {column}",
+      loading: "Cargando...",
+      defaultOption: "Select {column}",
+      columns: "Columnas",
+      loaded: false
+    }
+  }
 });
 
 /***/ }),
@@ -39594,10 +39630,10 @@ process.umask = function() { return 0; };
 
 /***/ }),
 
-/***/ "./resources/js/components/BoardroomsTable.vue":
-/*!*****************************************************!*\
-  !*** ./resources/js/components/BoardroomsTable.vue ***!
-  \*****************************************************/
+/***/ "./resources/js/components/boardrooms/BoardroomsTable.vue":
+/*!****************************************************************!*\
+  !*** ./resources/js/components/boardrooms/BoardroomsTable.vue ***!
+  \****************************************************************/
 /***/ ((__unused_webpack_module, __webpack_exports__, __webpack_require__) => {
 
 "use strict";
@@ -39605,9 +39641,9 @@ __webpack_require__.r(__webpack_exports__);
 /* harmony export */ __webpack_require__.d(__webpack_exports__, {
 /* harmony export */   "default": () => (__WEBPACK_DEFAULT_EXPORT__)
 /* harmony export */ });
-/* harmony import */ var _BoardroomsTable_vue_vue_type_template_id_3bd9f181___WEBPACK_IMPORTED_MODULE_0__ = __webpack_require__(/*! ./BoardroomsTable.vue?vue&type=template&id=3bd9f181& */ "./resources/js/components/BoardroomsTable.vue?vue&type=template&id=3bd9f181&");
-/* harmony import */ var _BoardroomsTable_vue_vue_type_script_lang_js___WEBPACK_IMPORTED_MODULE_1__ = __webpack_require__(/*! ./BoardroomsTable.vue?vue&type=script&lang=js& */ "./resources/js/components/BoardroomsTable.vue?vue&type=script&lang=js&");
-/* harmony import */ var _node_modules_vue_loader_lib_runtime_componentNormalizer_js__WEBPACK_IMPORTED_MODULE_2__ = __webpack_require__(/*! !../../../node_modules/vue-loader/lib/runtime/componentNormalizer.js */ "./node_modules/vue-loader/lib/runtime/componentNormalizer.js");
+/* harmony import */ var _BoardroomsTable_vue_vue_type_template_id_21b591ca___WEBPACK_IMPORTED_MODULE_0__ = __webpack_require__(/*! ./BoardroomsTable.vue?vue&type=template&id=21b591ca& */ "./resources/js/components/boardrooms/BoardroomsTable.vue?vue&type=template&id=21b591ca&");
+/* harmony import */ var _BoardroomsTable_vue_vue_type_script_lang_js___WEBPACK_IMPORTED_MODULE_1__ = __webpack_require__(/*! ./BoardroomsTable.vue?vue&type=script&lang=js& */ "./resources/js/components/boardrooms/BoardroomsTable.vue?vue&type=script&lang=js&");
+/* harmony import */ var _node_modules_vue_loader_lib_runtime_componentNormalizer_js__WEBPACK_IMPORTED_MODULE_2__ = __webpack_require__(/*! !../../../../node_modules/vue-loader/lib/runtime/componentNormalizer.js */ "./node_modules/vue-loader/lib/runtime/componentNormalizer.js");
 
 
 
@@ -39617,8 +39653,8 @@ __webpack_require__.r(__webpack_exports__);
 ;
 var component = (0,_node_modules_vue_loader_lib_runtime_componentNormalizer_js__WEBPACK_IMPORTED_MODULE_2__["default"])(
   _BoardroomsTable_vue_vue_type_script_lang_js___WEBPACK_IMPORTED_MODULE_1__["default"],
-  _BoardroomsTable_vue_vue_type_template_id_3bd9f181___WEBPACK_IMPORTED_MODULE_0__.render,
-  _BoardroomsTable_vue_vue_type_template_id_3bd9f181___WEBPACK_IMPORTED_MODULE_0__.staticRenderFns,
+  _BoardroomsTable_vue_vue_type_template_id_21b591ca___WEBPACK_IMPORTED_MODULE_0__.render,
+  _BoardroomsTable_vue_vue_type_template_id_21b591ca___WEBPACK_IMPORTED_MODULE_0__.staticRenderFns,
   false,
   null,
   null,
@@ -39628,15 +39664,15 @@ var component = (0,_node_modules_vue_loader_lib_runtime_componentNormalizer_js__
 
 /* hot reload */
 if (false) { var api; }
-component.options.__file = "resources/js/components/BoardroomsTable.vue"
+component.options.__file = "resources/js/components/boardrooms/BoardroomsTable.vue"
 /* harmony default export */ const __WEBPACK_DEFAULT_EXPORT__ = (component.exports);
 
 /***/ }),
 
-/***/ "./resources/js/components/BoardroomsTable.vue?vue&type=script&lang=js&":
-/*!******************************************************************************!*\
-  !*** ./resources/js/components/BoardroomsTable.vue?vue&type=script&lang=js& ***!
-  \******************************************************************************/
+/***/ "./resources/js/components/boardrooms/BoardroomsTable.vue?vue&type=script&lang=js&":
+/*!*****************************************************************************************!*\
+  !*** ./resources/js/components/boardrooms/BoardroomsTable.vue?vue&type=script&lang=js& ***!
+  \*****************************************************************************************/
 /***/ ((__unused_webpack_module, __webpack_exports__, __webpack_require__) => {
 
 "use strict";
@@ -39644,32 +39680,32 @@ __webpack_require__.r(__webpack_exports__);
 /* harmony export */ __webpack_require__.d(__webpack_exports__, {
 /* harmony export */   "default": () => (__WEBPACK_DEFAULT_EXPORT__)
 /* harmony export */ });
-/* harmony import */ var _node_modules_babel_loader_lib_index_js_clonedRuleSet_5_0_rules_0_use_0_node_modules_vue_loader_lib_index_js_vue_loader_options_BoardroomsTable_vue_vue_type_script_lang_js___WEBPACK_IMPORTED_MODULE_0__ = __webpack_require__(/*! -!../../../node_modules/babel-loader/lib/index.js??clonedRuleSet-5[0].rules[0].use[0]!../../../node_modules/vue-loader/lib/index.js??vue-loader-options!./BoardroomsTable.vue?vue&type=script&lang=js& */ "./node_modules/babel-loader/lib/index.js??clonedRuleSet-5[0].rules[0].use[0]!./node_modules/vue-loader/lib/index.js??vue-loader-options!./resources/js/components/BoardroomsTable.vue?vue&type=script&lang=js&");
+/* harmony import */ var _node_modules_babel_loader_lib_index_js_clonedRuleSet_5_0_rules_0_use_0_node_modules_vue_loader_lib_index_js_vue_loader_options_BoardroomsTable_vue_vue_type_script_lang_js___WEBPACK_IMPORTED_MODULE_0__ = __webpack_require__(/*! -!../../../../node_modules/babel-loader/lib/index.js??clonedRuleSet-5[0].rules[0].use[0]!../../../../node_modules/vue-loader/lib/index.js??vue-loader-options!./BoardroomsTable.vue?vue&type=script&lang=js& */ "./node_modules/babel-loader/lib/index.js??clonedRuleSet-5[0].rules[0].use[0]!./node_modules/vue-loader/lib/index.js??vue-loader-options!./resources/js/components/boardrooms/BoardroomsTable.vue?vue&type=script&lang=js&");
  /* harmony default export */ const __WEBPACK_DEFAULT_EXPORT__ = (_node_modules_babel_loader_lib_index_js_clonedRuleSet_5_0_rules_0_use_0_node_modules_vue_loader_lib_index_js_vue_loader_options_BoardroomsTable_vue_vue_type_script_lang_js___WEBPACK_IMPORTED_MODULE_0__["default"]); 
 
 /***/ }),
 
-/***/ "./resources/js/components/BoardroomsTable.vue?vue&type=template&id=3bd9f181&":
-/*!************************************************************************************!*\
-  !*** ./resources/js/components/BoardroomsTable.vue?vue&type=template&id=3bd9f181& ***!
-  \************************************************************************************/
+/***/ "./resources/js/components/boardrooms/BoardroomsTable.vue?vue&type=template&id=21b591ca&":
+/*!***********************************************************************************************!*\
+  !*** ./resources/js/components/boardrooms/BoardroomsTable.vue?vue&type=template&id=21b591ca& ***!
+  \***********************************************************************************************/
 /***/ ((__unused_webpack_module, __webpack_exports__, __webpack_require__) => {
 
 "use strict";
 __webpack_require__.r(__webpack_exports__);
 /* harmony export */ __webpack_require__.d(__webpack_exports__, {
-/* harmony export */   "render": () => (/* reexport safe */ _node_modules_vue_loader_lib_loaders_templateLoader_js_vue_loader_options_node_modules_vue_loader_lib_index_js_vue_loader_options_BoardroomsTable_vue_vue_type_template_id_3bd9f181___WEBPACK_IMPORTED_MODULE_0__.render),
-/* harmony export */   "staticRenderFns": () => (/* reexport safe */ _node_modules_vue_loader_lib_loaders_templateLoader_js_vue_loader_options_node_modules_vue_loader_lib_index_js_vue_loader_options_BoardroomsTable_vue_vue_type_template_id_3bd9f181___WEBPACK_IMPORTED_MODULE_0__.staticRenderFns)
+/* harmony export */   "render": () => (/* reexport safe */ _node_modules_vue_loader_lib_loaders_templateLoader_js_vue_loader_options_node_modules_vue_loader_lib_index_js_vue_loader_options_BoardroomsTable_vue_vue_type_template_id_21b591ca___WEBPACK_IMPORTED_MODULE_0__.render),
+/* harmony export */   "staticRenderFns": () => (/* reexport safe */ _node_modules_vue_loader_lib_loaders_templateLoader_js_vue_loader_options_node_modules_vue_loader_lib_index_js_vue_loader_options_BoardroomsTable_vue_vue_type_template_id_21b591ca___WEBPACK_IMPORTED_MODULE_0__.staticRenderFns)
 /* harmony export */ });
-/* harmony import */ var _node_modules_vue_loader_lib_loaders_templateLoader_js_vue_loader_options_node_modules_vue_loader_lib_index_js_vue_loader_options_BoardroomsTable_vue_vue_type_template_id_3bd9f181___WEBPACK_IMPORTED_MODULE_0__ = __webpack_require__(/*! -!../../../node_modules/vue-loader/lib/loaders/templateLoader.js??vue-loader-options!../../../node_modules/vue-loader/lib/index.js??vue-loader-options!./BoardroomsTable.vue?vue&type=template&id=3bd9f181& */ "./node_modules/vue-loader/lib/loaders/templateLoader.js??vue-loader-options!./node_modules/vue-loader/lib/index.js??vue-loader-options!./resources/js/components/BoardroomsTable.vue?vue&type=template&id=3bd9f181&");
+/* harmony import */ var _node_modules_vue_loader_lib_loaders_templateLoader_js_vue_loader_options_node_modules_vue_loader_lib_index_js_vue_loader_options_BoardroomsTable_vue_vue_type_template_id_21b591ca___WEBPACK_IMPORTED_MODULE_0__ = __webpack_require__(/*! -!../../../../node_modules/vue-loader/lib/loaders/templateLoader.js??vue-loader-options!../../../../node_modules/vue-loader/lib/index.js??vue-loader-options!./BoardroomsTable.vue?vue&type=template&id=21b591ca& */ "./node_modules/vue-loader/lib/loaders/templateLoader.js??vue-loader-options!./node_modules/vue-loader/lib/index.js??vue-loader-options!./resources/js/components/boardrooms/BoardroomsTable.vue?vue&type=template&id=21b591ca&");
 
 
 /***/ }),
 
-/***/ "./node_modules/vue-loader/lib/loaders/templateLoader.js??vue-loader-options!./node_modules/vue-loader/lib/index.js??vue-loader-options!./resources/js/components/BoardroomsTable.vue?vue&type=template&id=3bd9f181&":
-/*!***************************************************************************************************************************************************************************************************************************!*\
-  !*** ./node_modules/vue-loader/lib/loaders/templateLoader.js??vue-loader-options!./node_modules/vue-loader/lib/index.js??vue-loader-options!./resources/js/components/BoardroomsTable.vue?vue&type=template&id=3bd9f181& ***!
-  \***************************************************************************************************************************************************************************************************************************/
+/***/ "./node_modules/vue-loader/lib/loaders/templateLoader.js??vue-loader-options!./node_modules/vue-loader/lib/index.js??vue-loader-options!./resources/js/components/boardrooms/BoardroomsTable.vue?vue&type=template&id=21b591ca&":
+/*!**************************************************************************************************************************************************************************************************************************************!*\
+  !*** ./node_modules/vue-loader/lib/loaders/templateLoader.js??vue-loader-options!./node_modules/vue-loader/lib/index.js??vue-loader-options!./resources/js/components/boardrooms/BoardroomsTable.vue?vue&type=template&id=21b591ca& ***!
+  \**************************************************************************************************************************************************************************************************************************************/
 /***/ ((__unused_webpack_module, __webpack_exports__, __webpack_require__) => {
 
 "use strict";
@@ -39696,7 +39732,7 @@ var render = function() {
             [
               _c("v-server-table", {
                 attrs: {
-                  url: "/people",
+                  url: _vm.route("boardrooms.index"),
                   columns: _vm.columns,
                   options: _vm.options
                 }

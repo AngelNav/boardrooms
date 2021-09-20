@@ -48,11 +48,6 @@ class BoardroomController extends Controller
 
         $order = $ascending === "1" ? 'DESC' : 'ASC';
         switch ($orderBy) {
-            case 'formatted_created_at':
-            case 'formatted_updated_at':
-                $orderBy = $orderBy === 'formatted_created_at' ? 'created_at' : 'updated_at';
-                $purchase_orders->orderBy($orderBy, $order);
-                break;
             default:
                 $purchase_orders->orderBy($orderBy, $order);
                 break;
@@ -86,43 +81,45 @@ class BoardroomController extends Controller
     {
         $boardroom = Boardroom::create($request->all());
 
-        return response()->json(['success' => true, 'boardroom' => $boardroom], 201);
+        return response()->json(['message' => 'Creado con éxito', 'boardroom' => $boardroom], 201);
     }
 
     /**
      * Display the specified resource.
      *
-     * @param \App\Models\Boardroom $boardroom
-     * @return Response
+     * @param Boardroom $boardroom
+     * @return array
      */
-    public
-    function show(Boardroom $boardroom)
+    public function show(Boardroom $boardroom): array
     {
-        //
+        $columns = json_decode(request()->get("columns", "[]"), true);
+        array_push($columns, 'id');
+
+        return $boardroom->only($columns);
     }
 
     /**
      * Update the specified resource in storage.
      *
-     * @param Request $request
-     * @param \App\Models\Boardroom $boardroom
-     * @return Response
+     * @param BoardroomRequest $request
+     * @param Boardroom $boardroom
+     * @return JsonResponse
      */
-    public
-    function update(Request $request, Boardroom $boardroom)
+    public function update(BoardroomRequest $request, Boardroom $boardroom): JsonResponse
     {
-        //
+        $boardroom->update($request->all());
+        return response()->json(['message' => 'Actualizado con éxito', 'boardroom' => $boardroom]);
     }
 
     /**
      * Remove the specified resource from storage.
      *
-     * @param \App\Models\Boardroom $boardroom
-     * @return Response
+     * @param Boardroom $boardroom
+     * @return JsonResponse
      */
-    public
-    function destroy(Boardroom $boardroom)
+    public function destroy(Boardroom $boardroom): JsonResponse
     {
-        //
+        $boardroom->delete();
+        return response()->json(['message' => 'Eliminado con éxito'], 410);
     }
 }
