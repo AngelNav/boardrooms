@@ -79,7 +79,7 @@ class BoardroomController extends Controller
     {
         $boardroom = Boardroom::create($request->all());
 
-        return response()->json(['message' => 'Creado con correctamente', 'boardroom' => $boardroom], 201);
+        return response()->json(['message' => 'Sala creada correctamente', 'boardroom' => $boardroom], 201);
     }
 
     /**
@@ -106,7 +106,7 @@ class BoardroomController extends Controller
     public function update(BoardroomRequest $request, Boardroom $boardroom): JsonResponse
     {
         $boardroom->update($request->all());
-        return response()->json(['message' => 'Actualizado con correctamente', 'boardroom' => $boardroom]);
+        return response()->json(['message' => 'Sala actualizada correctamente', 'boardroom' => $boardroom]);
     }
 
     /**
@@ -118,6 +118,6 @@ class BoardroomController extends Controller
     public function destroy(Boardroom $boardroom): JsonResponse
     {
         $boardroom->delete();
-        return response()->json(['message' => 'Eliminado con correctamente']);
+        return response()->json(['message' => 'Sala eliminada correctamente']);
     }
 }

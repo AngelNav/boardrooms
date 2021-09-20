@@ -3,17 +3,29 @@
         <div class="row justify-content-center">
             <div class="col-md-10">
                 <div class="card">
-                    <div class="card-header">Salas de juntas</div>
+                    <div class="card-header">Reservaciones <b>{{ data.name }}</b></div>
 
                     <div class="card-body">
-                        <v-server-table :url="route('boardrooms.index')" :columns="columns" :options="options"
+                        <v-server-table :url="route('reservations.index',{boardroomId: data.id})" :columns="columns"
+                                        :options="options"
                                         ref="table">
 
                             <div slot="beforeTable" class="mb-1 inline float-right">
-                                <button type="button" class="btn btn-info"
-                                        @click="$modal.show('boardroom-modal', {})">
-                                    Nueva sala de juntas
+                                <button type="button" class="btn btn-secondary"
+                                        @click="$emit('swap-component','BoardroomsTable')">
+                                    Regresar
                                 </button>
+                                <button type="button" class="btn btn-info"
+                                        @click="$modal.show('reservation-modal', {})">
+                                    Reservar
+                                </button>
+                            </div>
+
+                            <div slot="active" slot-scope="props" class="text-center">
+                                <span class="badge" :class="{
+                                    'badge-success': props.row.active,
+                                    'badge-danger': !props.row.active,
+                                    }">{{ props.row.active ? 'Activa' : 'Vencida' }}</span>
                             </div>
 
                             <div slot="actions" slot-scope="props" class="text-center">
@@ -32,37 +44,40 @@
                                         @click="erase(props.row.id)">
                                     <i class="fa fa-trash"></i>
                                 </button>
-                                <button class="btn btn-info"
-                                        title="Agendar"
-                                        @click="reserve('ReservationsTable', props.row)">
-                                    <i class="fa fa-calendar"></i>
-                                </button>
                             </div>
                         </v-server-table>
                     </div>
                 </div>
             </div>
         </div>
-        <boardroom-modal @created="refreshTable"/>
+        <reservation-modal @created="refreshTable" :data="data"/>
         <v-dialog/>
     </div>
 </template>
 
 <script>
-import BoardroomModal from "./BoardroomModal";
+import ReservationModal from "./ReservationModal";
 
 export default {
-    components: {BoardroomModal},
+    name: "ReservationsTable",
+    components: {ReservationModal},
+    props: {
+        data: {
+            type: Object
+        }
+    },
     data() {
         return {
-            columns: ['id', 'name', 'actions'],
+            columns: ['id', 'start_date', 'end_date', 'active', 'actions'],
             options: {
                 headings: {
                     id: 'id',
-                    name: 'Nombre',
+                    start_date: 'Inicio',
+                    end_date: 'Fin',
+                    active: 'Estado',
                     actions: 'Acciones'
                 },
-                sortable: ['id', 'name'],
+                sortable: ['id', 'name', 'start_date', 'end_date', 'active'],
             }
         }
     },
@@ -75,15 +90,15 @@ export default {
             this.$emit('swap-component', component, data)
         },
         edit(id) {
-            this.$modal.show('boardroom-modal', {id: id})
+            this.$modal.show('reservation-modal', {id: id})
         },
 
         show(id) {
-            this.$modal.show('boardroom-modal', {id: id, show: true})
+            this.$modal.show('reservation-modal', {id: id, show: true})
         },
         erase(id) {
             this.deleteDialog(() => {
-                axios.delete(this.route('boardrooms.destroy', id)).then(
+                axios.delete(this.route('reservations.destroy', id)).then(
                     response => {
                         this.refreshTable()
                         this.swal.fire({

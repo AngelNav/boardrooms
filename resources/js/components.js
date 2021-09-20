@@ -1,5 +1,5 @@
-import BoardroomsTable from "./components/boardrooms/BoardroomsTable";
+import MainView from "./components/MainView";
 
 export default {
-    BoardroomsTable
+    MainView
 }

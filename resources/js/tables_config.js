@@ -15,5 +15,11 @@ export default {
             columns: "Columnas",
             loaded: false
         },
+        sortIcon: {
+            base: "fa",
+            up: "fa-sort-up",
+            down: "fa-sort-down",
+            is: "fa-sort"
+        },
     }
 }

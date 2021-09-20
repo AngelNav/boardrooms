@@ -46,9 +46,17 @@ export default {
         }
     },
     methods: {
-        afterDone() {
+        afterDone(response) {
+            console.log(response)
             this.$modal.hide('boardroom-modal')
             this.$emit('created')
+            this.swal.fire({
+                position: 'center',
+                icon: 'success',
+                title: response.data.message,
+                showConfirmButton: false,
+                timer: 1500
+            })
         },
         beforeOpen(event) {
             Object.assign(this.boardroom, this.$options.data().boardroom)
@@ -61,7 +69,9 @@ export default {
                     columns: JSON.stringify(['name'])
                 }
                 axios.get(this.route('boardrooms.show', event.params), {params})
-                    .then(response => this.boardroom = response.data)
+                    .then(response => {
+                        this.boardroom = response.data
+                    })
                     .catch(() => {
                         this.swal.fire({
                             icon: 'error',

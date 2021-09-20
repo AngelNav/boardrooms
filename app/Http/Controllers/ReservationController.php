@@ -5,8 +5,6 @@ namespace App\Http\Controllers;
 use App\Http\Requests\ReservationRequest;
 use App\Models\Reservation;
 use Illuminate\Http\JsonResponse;
-use Illuminate\Http\Request;
-use Illuminate\Http\Response;
 
 class ReservationController extends Controller
 {
@@ -83,7 +81,7 @@ class ReservationController extends Controller
         $reservation = Reservation::create($request->all());
 
         return response()->json([
-            'message' => 'Reservacion creado correctamente',
+            'message' => 'Reservación creada correctamente',
             'reservation' => $reservation], 201);
     }
 
@@ -111,17 +109,18 @@ class ReservationController extends Controller
     public function update(ReservationRequest $request, Reservation $reservation): JsonResponse
     {
         $reservation->update($request->all());
-        return response()->json(['message' => "Actualizado con éxito", 'reservation' => $reservation]);
+        return response()->json(['message' => "Reservación actualizada con éxito", 'reservation' => $reservation]);
     }
 
     /**
      * Remove the specified resource from storage.
      *
      * @param Reservation $reservation
-     * @return Response
+     * @return JsonResponse
      */
-    public function destroy(Reservation $reservation)
+    public function destroy(Reservation $reservation): JsonResponse
     {
-        //
+        $reservation->delete();
+        return response()->json(['message' => 'Reservación eliminada correctamente']);
     }
 }
