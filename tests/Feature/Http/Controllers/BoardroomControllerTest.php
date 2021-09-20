@@ -106,7 +106,7 @@ class BoardroomControllerTest extends TestCase
         $this->withExceptionHandling();
         $this->actingAs($user)
             ->delete("boardrooms/$boardroom->id")
-            ->assertStatus(410);
+            ->assertStatus(200);
 
         $this->assertSoftDeleted('boardrooms', [
             'id' => $boardroom->id,

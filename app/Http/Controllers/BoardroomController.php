@@ -5,8 +5,6 @@ namespace App\Http\Controllers;
 use App\Http\Requests\BoardroomRequest;
 use App\Models\Boardroom;
 use Illuminate\Http\JsonResponse;
-use Illuminate\Http\Request;
-use Illuminate\Http\Response;
 
 class BoardroomController extends Controller
 {
@@ -81,7 +79,7 @@ class BoardroomController extends Controller
     {
         $boardroom = Boardroom::create($request->all());
 
-        return response()->json(['message' => 'Creado con éxito', 'boardroom' => $boardroom], 201);
+        return response()->json(['message' => 'Creado con correctamente', 'boardroom' => $boardroom], 201);
     }
 
     /**
@@ -108,7 +106,7 @@ class BoardroomController extends Controller
     public function update(BoardroomRequest $request, Boardroom $boardroom): JsonResponse
     {
         $boardroom->update($request->all());
-        return response()->json(['message' => 'Actualizado con éxito', 'boardroom' => $boardroom]);
+        return response()->json(['message' => 'Actualizado con correctamente', 'boardroom' => $boardroom]);
     }
 
     /**
@@ -120,6 +118,6 @@ class BoardroomController extends Controller
     public function destroy(Boardroom $boardroom): JsonResponse
     {
         $boardroom->delete();
-        return response()->json(['message' => 'Eliminado con éxito'], 410);
+        return response()->json(['message' => 'Eliminado con correctamente']);
     }
 }
