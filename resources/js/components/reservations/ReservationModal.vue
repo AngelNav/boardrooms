@@ -18,14 +18,16 @@
                     <div class="col-md-6">
                         <div class="form-group">
                             <label>Inicio</label>
-                            <datetime type="datetime" name="start_date" v-model="reservation.start_date"
+                            <datetime input-class="form-control"
+                                      type="datetime" name="start_date" v-model="reservation.start_date"
                                       :disabled="modalShow"></datetime>
                         </div>
                     </div>
                     <div class="col-md-6">
                         <div class="form-group">
                             <label>Fin</label>
-                            <datetime type="datetime" name="end_date" v-model="reservation.end_date"
+                            <datetime input-class="form-control"
+                                type="datetime" name="end_date" v-model="reservation.end_date"
                                       :disabled="modalShow"></datetime>
                         </div>
                     </div>
@@ -107,6 +109,7 @@ export default {
                 this.form.action = this.route('reservations.store');
                 this.form.method = 'POST';
             }
+            this.reservation.boardroom_id = this.data.id
         }
     }
 }

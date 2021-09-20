@@ -143,7 +143,22 @@ class ReservationControllerTest extends TestCase
             ->assertStatus(200);
 
         $this->assertSoftDeleted('reservations', [
-           'id' => $reservation->id,
+            'id' => $reservation->id,
         ]);
+    }
+
+    public function test_cancel_reservation()
+    {
+        $user = User::factory()->create();
+        $reservation = Reservation::factory()->create();
+
+        $this->withExceptionHandling();
+        $response = $this->actingAs($user)
+            ->patch("reservations/$reservation->id/cancel")
+            ->assertStatus(200)->getContent();
+
+        $response = json_decode($response);
+
+        $this->assertEquals(false, $response->reservation->active);
     }
 }

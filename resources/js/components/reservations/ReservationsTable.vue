@@ -44,6 +44,11 @@
                                         @click="erase(props.row.id)">
                                     <i class="fa fa-trash"></i>
                                 </button>
+                                <button class="btn btn-danger"
+                                        title="Cancelar"
+                                        @click="cancel(props.row.id)">
+                                    <i class="fa fa-ban"></i>
+                                </button>
                             </div>
                         </v-server-table>
                     </div>
@@ -88,6 +93,21 @@ export default {
         },
         reserve(component, data) {
             this.$emit('swap-component', component, data)
+        },
+        cancel(id){
+            this.swal.fire({
+                title: '¿Desea cancelar la reserva?',
+                showCancelButton: true,
+                confirmButtonColor: '#d33',
+                confirmButtonText: 'Si, cancelar la reserva',
+                cancelButtonText: 'No cancelar'
+            }).then((result) => {
+                if (result.isConfirmed) {
+                    axios.patch(this.route('reservations.cancel', id)).then(response => {
+                        this.swal.fire(response.data.message, '', 'success')
+                    })
+                }
+            })
         },
         edit(id) {
             this.$modal.show('reservation-modal', {id: id})

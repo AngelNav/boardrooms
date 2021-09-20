@@ -2519,6 +2519,8 @@ __webpack_require__.r(__webpack_exports__);
 //
 //
 //
+//
+//
 /* harmony default export */ const __WEBPACK_DEFAULT_EXPORT__ = ({
   name: "ReservationModal",
   props: {
@@ -2580,6 +2582,8 @@ __webpack_require__.r(__webpack_exports__);
         this.form.action = this.route('reservations.store');
         this.form.method = 'POST';
       }
+
+      this.reservation.boardroom_id = this.data.id;
     }
   }
 });
@@ -2598,6 +2602,11 @@ __webpack_require__.r(__webpack_exports__);
 /* harmony export */   "default": () => (__WEBPACK_DEFAULT_EXPORT__)
 /* harmony export */ });
 /* harmony import */ var _ReservationModal__WEBPACK_IMPORTED_MODULE_0__ = __webpack_require__(/*! ./ReservationModal */ "./resources/js/components/reservations/ReservationModal.vue");
+//
+//
+//
+//
+//
 //
 //
 //
@@ -2689,6 +2698,23 @@ __webpack_require__.r(__webpack_exports__);
     reserve: function reserve(component, data) {
       this.$emit('swap-component', component, data);
     },
+    cancel: function cancel(id) {
+      var _this = this;
+
+      this.swal.fire({
+        title: '¿Desea cancelar la reserva?',
+        showCancelButton: true,
+        confirmButtonColor: '#d33',
+        confirmButtonText: 'Si, cancelar la reserva',
+        cancelButtonText: 'No cancelar'
+      }).then(function (result) {
+        if (result.isConfirmed) {
+          axios.patch(_this.route('reservations.cancel', id)).then(function (response) {
+            _this.swal.fire(response.data.message, '', 'success');
+          });
+        }
+      });
+    },
     edit: function edit(id) {
       this.$modal.show('reservation-modal', {
         id: id
@@ -2701,13 +2727,13 @@ __webpack_require__.r(__webpack_exports__);
       });
     },
     erase: function erase(id) {
-      var _this = this;
+      var _this2 = this;
 
       this.deleteDialog(function () {
-        axios["delete"](_this.route('reservations.destroy', id)).then(function (response) {
-          _this.refreshTable();
+        axios["delete"](_this2.route('reservations.destroy', id)).then(function (response) {
+          _this2.refreshTable();
 
-          _this.swal.fire({
+          _this2.swal.fire({
             position: 'center',
             icon: 'success',
             title: response.data.message,
@@ -54539,6 +54565,7 @@ var render = function() {
                     _vm._v(" "),
                     _c("datetime", {
                       attrs: {
+                        "input-class": "form-control",
                         type: "datetime",
                         name: "start_date",
                         disabled: _vm.modalShow
@@ -54565,6 +54592,7 @@ var render = function() {
                     _vm._v(" "),
                     _c("datetime", {
                       attrs: {
+                        "input-class": "form-control",
                         type: "datetime",
                         name: "end_date",
                         disabled: _vm.modalShow
@@ -54750,6 +54778,20 @@ var render = function() {
                                 }
                               },
                               [_c("i", { staticClass: "fa fa-trash" })]
+                            ),
+                            _vm._v(" "),
+                            _c(
+                              "button",
+                              {
+                                staticClass: "btn btn-danger",
+                                attrs: { title: "Cancelar" },
+                                on: {
+                                  click: function($event) {
+                                    return _vm.cancel(props.row.id)
+                                  }
+                                }
+                              },
+                              [_c("i", { staticClass: "fa fa-ban" })]
                             )
                           ])
                         }

@@ -123,4 +123,16 @@ class ReservationController extends Controller
         $reservation->delete();
         return response()->json(['message' => 'Reservación eliminada correctamente']);
     }
+
+    /**
+     * @param Reservation $reservation
+     * @return JsonResponse
+     */
+    public function cancel(Reservation $reservation): JsonResponse
+    {
+        $reservation->active = false;
+        $reservation->save();
+
+        return response()->json(['message' => 'Reservación cancelada correctamente', 'reservation' => $reservation]);
+    }
 }
