@@ -66,7 +66,7 @@ class BoardroomControllerTest extends TestCase
             ->get("boardrooms/$boardroom->id")
             ->assertStatus(200)->getContent();
 
-        $response= json_decode($response);
+        $response = json_decode($response);
 
         $this->assertEquals($boardroom->id, $response->id);
     }

@@ -17,6 +17,7 @@
                 <div class="form-group">
                     <label>Nombre</label>
                     <input type="text" class="form-control" placeholder="Nombre"
+                           name="name"
                            :disabled="modalShow"
                            v-model="boardroom.name">
                 </div>
@@ -46,11 +47,11 @@ export default {
     },
     methods: {
         afterDone() {
-            Object.assign(this.boardroom, this.$options.data().boardroom)
             this.$modal.hide('boardroom-modal')
             this.$emit('created')
         },
         beforeOpen(event) {
+            Object.assign(this.boardroom, this.$options.data().boardroom)
             this.modalShow = typeof event.params.show !== "undefined"
             if (typeof event.params.id !== "undefined") {
                 this.form.action = this.route('boardrooms.update', event.params);

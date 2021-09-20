@@ -14,10 +14,10 @@ Vue.use(VModal, {dialog: true})
 Vue.use(alvue);
 
 Vue.mixin({
-    data(){
-      return {
-          swal: Swal
-      }
+    data() {
+        return {
+            swal: Swal
+        }
     },
     methods: {
         route,

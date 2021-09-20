@@ -12,17 +12,14 @@ __webpack_require__.r(__webpack_exports__);
 /* harmony export */ __webpack_require__.d(__webpack_exports__, {
 /* harmony export */   "default": () => (__WEBPACK_DEFAULT_EXPORT__)
 /* harmony export */ });
-/* harmony import */ var _alv_form__WEBPACK_IMPORTED_MODULE_0__ = __webpack_require__(/*! ./alv-form */ "./node_modules/@myshell/alvue/src/alv-form.vue");
+/* harmony import */ var _alv_form_vue__WEBPACK_IMPORTED_MODULE_0__ = __webpack_require__(/*! ./alv-form.vue */ "./node_modules/@myshell/alvue/src/alv-form.vue");
 
 
 /* harmony default export */ const __WEBPACK_DEFAULT_EXPORT__ = ({
-    install(Vue, options) {
-        const AlvFormComponent = _alv_form__WEBPACK_IMPORTED_MODULE_0__["default"];
-        AlvFormComponent.computed = Object.assign({options: () => options}, AlvFormComponent.computed)
-        Vue.component("alv-form", AlvFormComponent);
+    install(Vue) {
+        Vue.component('alv-form', _alv_form_vue__WEBPACK_IMPORTED_MODULE_0__["default"]);
     }
 });
-
 
 /***/ }),
 
@@ -2240,6 +2237,7 @@ __webpack_require__.r(__webpack_exports__);
 //
 //
 //
+//
 /* harmony default export */ const __WEBPACK_DEFAULT_EXPORT__ = ({
   name: "BoardroomModal",
   data: function data() {
@@ -2256,13 +2254,13 @@ __webpack_require__.r(__webpack_exports__);
   },
   methods: {
     afterDone: function afterDone() {
-      Object.assign(this.boardroom, this.$options.data().boardroom);
       this.$modal.hide('boardroom-modal');
       this.$emit('created');
     },
     beforeOpen: function beforeOpen(event) {
       var _this = this;
 
+      Object.assign(this.boardroom, this.$options.data().boardroom);
       this.modalShow = typeof event.params.show !== "undefined";
 
       if (typeof event.params.id !== "undefined") {
@@ -2333,6 +2331,27 @@ __webpack_require__.r(__webpack_exports__);
 //
 //
 //
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
 
 /* harmony default export */ const __WEBPACK_DEFAULT_EXPORT__ = ({
   components: {
@@ -2355,9 +2374,6 @@ __webpack_require__.r(__webpack_exports__);
     refreshTable: function refreshTable() {
       this.$refs.table.refresh();
       this.$modal.hide('dialog');
-    },
-    create: function create() {
-      this.$modal.show('boardroom-modal');
     },
     edit: function edit(id) {
       this.$modal.show('boardroom-modal', {
@@ -43547,9 +43563,6 @@ __webpack_require__.r(__webpack_exports__);
     },
     methods: {
         sendFormData() {
-            this.$emit('before-submit');
-            if(typeof this.options['before-submit'] != "undefined")
-                this.options['before-submit']();
             let form = this.$refs.form;
             let formData;
             if (typeof this.dataObject !== "undefined")
@@ -43572,16 +43585,11 @@ __webpack_require__.r(__webpack_exports__);
             }
             window.axios(axiosOptions).then(response => {
                 this.$emit("after-done", response);
-                if(typeof this.options['after-done'] != "undefined")
-                    this.options['after-done']();
                 if (this.resetOnDone)
                     form.reset();
                 this.dropAllErrors();
             }).catch(exception => {
                 this.$emit("after-error", exception.response.data);
-                if(typeof this.options['after-error'] != "undefined")
-                    this.options['after-error']();
-
                 _repository_js__WEBPACK_IMPORTED_MODULE_1__["default"].responseToJSON(exception.response.data).then(response => {
                     this.unsetButtonLoading();
                     let errors = response.errors;
@@ -44194,6 +44202,7 @@ var render = function() {
                 attrs: {
                   type: "text",
                   placeholder: "Nombre",
+                  name: "name",
                   disabled: _vm.modalShow
                 },
                 domProps: { value: _vm.boardroom.name },
@@ -44262,61 +44271,110 @@ var render = function() {
               "div",
               { staticClass: "card-body" },
               [
-                _c("v-server-table", {
-                  ref: "table",
-                  attrs: {
-                    url: _vm.route("boardrooms.index"),
-                    columns: _vm.columns,
-                    options: _vm.options
-                  },
-                  scopedSlots: _vm._u([
-                    {
-                      key: "actions",
-                      fn: function(props) {
-                        return _c("div", { staticClass: "text-center" }, [
-                          _c(
-                            "button",
-                            {
-                              staticClass: "btn btn-primary",
-                              on: {
-                                click: function($event) {
-                                  return _vm.show(props.row.id)
+                _c(
+                  "v-server-table",
+                  {
+                    ref: "table",
+                    attrs: {
+                      url: _vm.route("boardrooms.index"),
+                      columns: _vm.columns,
+                      options: _vm.options
+                    },
+                    scopedSlots: _vm._u([
+                      {
+                        key: "actions",
+                        fn: function(props) {
+                          return _c("div", { staticClass: "text-center" }, [
+                            _c(
+                              "button",
+                              {
+                                staticClass: "btn btn-primary",
+                                attrs: { title: "Mostrar" },
+                                on: {
+                                  click: function($event) {
+                                    return _vm.show(props.row.id)
+                                  }
                                 }
-                              }
-                            },
-                            [_c("i", { staticClass: "fa fa-eye" })]
-                          ),
-                          _vm._v(" "),
-                          _c(
-                            "button",
-                            {
-                              staticClass: "btn btn-warning",
-                              on: {
-                                click: function($event) {
-                                  return _vm.edit(props.row.id)
+                              },
+                              [_c("i", { staticClass: "fa fa-eye" })]
+                            ),
+                            _vm._v(" "),
+                            _c(
+                              "button",
+                              {
+                                staticClass: "btn btn-warning",
+                                attrs: { title: "Editar" },
+                                on: {
+                                  click: function($event) {
+                                    return _vm.edit(props.row.id)
+                                  }
                                 }
-                              }
-                            },
-                            [_c("i", { staticClass: "fa fa-pencil" })]
-                          ),
-                          _vm._v(" "),
-                          _c(
-                            "button",
-                            {
-                              staticClass: "btn btn-danger",
-                              on: {
-                                click: function($event) {
-                                  return _vm.erase(props.row.id)
+                              },
+                              [_c("i", { staticClass: "fa fa-pencil" })]
+                            ),
+                            _vm._v(" "),
+                            _c(
+                              "button",
+                              {
+                                staticClass: "btn btn-danger",
+                                attrs: { title: "Eliminar" },
+                                on: {
+                                  click: function($event) {
+                                    return _vm.erase(props.row.id)
+                                  }
                                 }
-                              }
-                            },
-                            [_c("i", { staticClass: "fa fa-trash" })]
-                          )
-                        ])
+                              },
+                              [_c("i", { staticClass: "fa fa-trash" })]
+                            ),
+                            _vm._v(" "),
+                            _c(
+                              "button",
+                              {
+                                staticClass: "btn btn-info",
+                                attrs: { title: "Agendar" },
+                                on: {
+                                  click: function($event) {
+                                    return _vm.erase(props.row.id)
+                                  }
+                                }
+                              },
+                              [_c("i", { staticClass: "fa fa-calendar" })]
+                            )
+                          ])
+                        }
                       }
-                    }
-                  ])
-                })
+                    ])
+                  },
+                  [
+                    _c(
+                      "div",
+                      {
+                        staticClass: "mb-1 inline float-right",
+                        attrs: { slot: "beforeTable" },
+                        slot: "beforeTable"
+                      },
+                      [
+                        _c(
+                          "button",
+                          {
+                            staticClass: "btn btn-info",
+                            attrs: { type: "button", color: "blue" },
+                            on: {
+                              click: function($event) {
+                                return _vm.$modal.show("boardroom-modal", {})
+                              }
+                            }
+                          },
+                          [
+                            _vm._v(
+                              "\n                                Nueva sala de juntas\n                            "
+                            )
+                          ]
+                        )
+                      ]
+                    )
+                  ]
+                )
               ],
               1
             )

@@ -1,6 +1,7 @@
 <?php
 
 use App\Http\Controllers\BoardroomController;
+use App\Http\Controllers\ReservationController;
 use Illuminate\Support\Facades\Route;
 
 /*
@@ -24,4 +25,5 @@ Route::get('/home', [App\Http\Controllers\HomeController::class, 'index'])->name
 
 Route::group(['middleware' => 'auth'], function () {
     Route::apiResource('boardrooms', BoardRoomController::class);
+    Route::apiResource('reservations', ReservationController::class);
 });

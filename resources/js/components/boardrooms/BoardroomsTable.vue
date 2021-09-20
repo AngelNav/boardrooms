@@ -8,13 +8,34 @@
                     <div class="card-body">
                         <v-server-table :url="route('boardrooms.index')" :columns="columns" :options="options"
                                         ref="table">
+
+                            <div slot="beforeTable" class="mb-1 inline float-right">
+                                <button type="button" class="btn btn-info"
+                                    color="blue" @click="$modal.show('boardroom-modal', {})">
+                                    Nueva sala de juntas
+                                </button>
+                            </div>
+
                             <div slot="actions" slot-scope="props" class="text-center">
-                                <button class="btn btn-primary" @click="show(props.row.id)"><i class="fa fa-eye"></i>
+                                <button class="btn btn-primary"
+                                        title="Mostrar"
+                                        @click="show(props.row.id)">
+                                    <i class="fa fa-eye"></i>
                                 </button>
-                                <button class="btn btn-warning" @click="edit(props.row.id)"><i class="fa fa-pencil"></i>
+                                <button class="btn btn-warning"
+                                        title="Editar"
+                                        @click="edit(props.row.id)">
+                                    <i class="fa fa-pencil"></i>
                                 </button>
-                                <button class="btn btn-danger" @click="erase(props.row.id)">
+                                <button class="btn btn-danger"
+                                        title="Eliminar"
+                                        @click="erase(props.row.id)">
                                     <i class="fa fa-trash"></i>
+                                </button>
+                                <button class="btn btn-info"
+                                        title="Agendar"
+                                        @click="erase(props.row.id)">
+                                    <i class="fa fa-calendar"></i>
                                 </button>
                             </div>
                         </v-server-table>
@@ -49,9 +70,6 @@ export default {
         refreshTable() {
             this.$refs.table.refresh();
             this.$modal.hide('dialog');
-        },
-        create() {
-            this.$modal.show('boardroom-modal')
         },
         edit(id) {
             this.$modal.show('boardroom-modal', {id: id})
