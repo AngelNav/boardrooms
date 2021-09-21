@@ -2711,6 +2711,8 @@ __webpack_require__.r(__webpack_exports__);
         if (result.isConfirmed) {
           axios.patch(_this.route('reservations.cancel', id)).then(function (response) {
             _this.swal.fire(response.data.message, '', 'success');
+
+            _this.refreshTable();
           });
         }
       });

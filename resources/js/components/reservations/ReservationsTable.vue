@@ -105,6 +105,7 @@ export default {
                 if (result.isConfirmed) {
                     axios.patch(this.route('reservations.cancel', id)).then(response => {
                         this.swal.fire(response.data.message, '', 'success')
+                        this.refreshTable()
                     })
                 }
             })
